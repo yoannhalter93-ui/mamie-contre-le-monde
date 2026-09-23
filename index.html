@@ -1,20 +1,87 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no"><meta name="theme-color" content="#171914"><title>Mamie Contre le Monde</title><style>
-*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden;background:#111;font-family:Georgia,system-ui,sans-serif;color:#fff;touch-action:none}button{font:inherit}#game{height:100dvh;max-width:520px;margin:auto;position:relative;overflow:hidden;background:#9cc5b1}.screen{position:absolute;inset:0}
-#title{z-index:50;background:radial-gradient(circle at 50% 22%,#d78758 0,#694735 34%,#18211c 80%);display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px calc(35px + env(safe-area-inset-bottom));text-align:center}.village{position:absolute;inset:0;opacity:.75;background:linear-gradient(165deg,transparent 55%,#172019 56%),linear-gradient(20deg,transparent 60%,#30281f 61%)}.titleMamie{position:absolute;top:10%;left:0;right:0;font-size:48px;line-height:.85;font-weight:1000;font-style:italic;text-shadow:4px 5px #151515;transform:rotate(-3deg)}.titleMamie em{color:#d73c2e;font-style:normal}.portrait{position:absolute;top:30%;left:0;right:0;font-size:135px;filter:drop-shadow(0 12px 6px #0008)}.menu{position:relative;z-index:2;display:grid;gap:9px}.gold{background:linear-gradient(#f3c95b,#c88d24)!important;color:#20170d!important;border-color:#ffe39a!important}.btn{border:2px solid #9d7b42;border-radius:9px;background:#171b1d;color:#fff;padding:13px;font-weight:900;box-shadow:0 4px #0006}
-#play{display:none;background:#86b08f}.sky{position:absolute;inset:0 0 72%;background:linear-gradient(#78b9d6,#e4c27e)}.ground{position:absolute;inset:28% 0 0;background:radial-gradient(circle at 50% 0,#d8c593,#a58f65 75%)}.house{position:absolute;top:13%;height:23%;border:4px solid #4b3827;border-radius:10px 10px 2px 2px;box-shadow:0 8px #0002;color:#382719;text-align:center;font:bold 13px system-ui;padding-top:15px}.h1{left:-3%;width:38%;background:#e6bf78}.h2{right:-3%;width:38%;background:#a9c8cf}.awning{font-size:29px}.church{position:absolute;top:6%;left:43%;font-size:68px}.path{position:absolute;left:32%;top:32%;width:36%;height:68%;background:#c8b381;clip-path:polygon(22% 0,78% 0,100% 100%,0 100%)}.fountain{position:absolute;left:42%;top:39%;font-size:61px}.market{position:absolute;font-size:48px}.m1{left:5%;top:43%}.m2{right:4%;top:43%}.flower{position:absolute;font-size:25px}.f1{left:4%;top:35%}.f2{right:3%;top:35%}.bench{position:absolute;left:49%;top:57%;font-size:42px}.cat{position:absolute;right:20%;top:64%;font-size:34px}.npc{position:absolute;z-index:4;font-size:48px;filter:drop-shadow(0 5px 2px #0005)}.yvette{left:15%;top:61%}.gerard{right:11%;top:58%}.hero{position:absolute;z-index:5;left:44%;top:75%;width:55px;height:68px;border-radius:50% 50% 42% 42%;background:#a53e32;border:3px solid #402b22;box-shadow:inset 0 15px #d8d0c5,0 6px 3px #0005}.hero:before{content:"";position:absolute;left:10px;top:-18px;width:30px;height:30px;border-radius:50%;background:#e3b08c;border:4px solid #d7d3cb}.hero:after{content:"";position:absolute;left:42px;top:37px;width:6px;height:39px;background:#65462d;transform:rotate(-9deg)}
-.hud{position:absolute;z-index:9;top:max(8px,env(safe-area-inset-top));left:8px;right:8px;display:flex;justify-content:space-between}.pill{background:#12171ae8;border:2px solid #b58c45;border-radius:11px;padding:7px 9px;font:bold 12px system-ui}.chapter{position:absolute;z-index:8;top:52px;left:9px;background:#11191de8;border:2px solid #8c6a38;border-radius:9px;padding:8px 11px;font:12px system-ui}.chapter b{font-size:15px}.quest{color:#e6ba4e}.dialog{position:absolute;z-index:12;left:9px;right:9px;bottom:147px;background:#10161aef;border:2px solid #b58c45;border-radius:12px;padding:11px 13px;font:14px/1.35 system-ui}.dialog b{color:#e7b94b}.stick{position:absolute;z-index:11;left:20px;bottom:23px;width:112px;height:112px;border-radius:50%;background:#111a1d99;border:3px solid #c69b5366}.nub{position:absolute;left:37px;top:37px;width:38px;height:38px;border-radius:50%;background:#d6b36caa}.action{position:absolute;z-index:11;right:19px;bottom:29px;width:78px;height:78px;border-radius:50%;background:#20272b;border:4px solid #d6ad5c;color:#fff;font-weight:1000}
-#battle{display:none;z-index:30;background:linear-gradient(#6789a0 0 30%,#9a7a50 30%);padding:calc(14px + env(safe-area-inset-top)) 12px 14px}.battleTop{text-align:center;background:#11191de8;border:2px solid #b58c45;border-radius:10px;padding:8px;color:#e8bd52;font:bold 14px system-ui}.fighters{height:46%;display:flex;justify-content:space-around;align-items:end;text-align:center}.fighter{font:13px system-ui;font-weight:800}.sprite{font-size:92px;filter:drop-shadow(0 8px 3px #0007)}.mamieSprite{width:86px;height:108px;margin:auto;border-radius:45% 45% 38% 38%;background:#a53e32;border:4px solid #39291f;position:relative}.mamieSprite:before{content:"";position:absolute;width:48px;height:48px;border-radius:50%;background:#e2b08d;border:7px solid #d7d3cb;left:14px;top:-24px}.bar{width:125px;height:12px;border:2px solid #d6ad5c;border-radius:10px;background:#261d1a;overflow:hidden}.fill{height:100%;background:#58ad43;transition:.25s}.log{min-height:58px;background:#11191de8;border:2px solid #b58c45;border-radius:10px;padding:10px;font:13px system-ui;margin-bottom:8px}.moves{display:grid;grid-template-columns:1fr 1fr;gap:7px}.move{min-height:62px;background:#171d20;border:2px solid #9c793f;border-radius:9px;color:#fff;font:bold 13px system-ui}.move small{display:block;color:#cbbd9e}.hit{animation:hit .25s}@keyframes hit{50%{transform:translateX(13px);filter:brightness(2)}}#reward{display:none;z-index:40;background:radial-gradient(circle,#33402e,#101412 70%);text-align:center;padding:70px 25px}.rewardTitle{font-size:42px;color:#f2c753}.key{font-size:80px}.continue{width:100%;margin-top:18px}.toast{position:absolute;z-index:20;top:120px;left:50%;transform:translate(-50%,-20px);opacity:0;background:#11191dee;border:2px solid #d6ad5c;border-radius:20px;padding:9px 15px;font:bold 12px system-ui;transition:.2s;white-space:nowrap}.toast.show{opacity:1;transform:translate(-50%,0)}
-</style></head><body><main id="game">
-<section id="title" class="screen"><div class="village"></div><div class="titleMamie">MAMIE<br><em>CONTRE</em><br>LE MONDE</div><div class="portrait">👵🏻</div><div class="menu"><button id="start" class="btn gold">CONTINUER</button><button id="new" class="btn">NOUVELLE PARTIE</button><button class="btn">OPTIONS</button></div></section>
-<section id="play" class="screen"><div class="sky"></div><div class="ground"></div><div class="house h1"><span class="awning">▰▱▰▱▰</span><br>BOULANGERIE<br>CHEZ YVETTE</div><div class="house h2"><span class="awning">▱▰▱▰▱</span><br>POISSONNERIE<br>GÉRARD</div><div class="church">⛪</div><div class="path"></div><div class="fountain">⛲</div><div class="market m1">🥕🍎</div><div class="market m2">🐟🦐</div><div class="flower f1">🌺🌼</div><div class="flower f2">🌻🌷</div><div class="bench">🪑</div><div class="cat">🐈</div><div class="npc yvette">👩🏻‍🍳</div><div class="npc gerard">🧔🏻</div><div id="hero" class="hero"></div><div class="hud"><div class="pill">❤️ <span id="hpH">55</span>/55</div><div class="pill">🪙 <span id="coins">0</span></div><div class="pill">🎒 <span id="bag">0</span></div></div><div class="chapter"><b>CHAPITRE 1 — LE MARCHÉ</b><br><span class="quest">Objectif : </span><span id="obj">Parler à Yvette</span></div><div id="dialog" class="dialog"><b>Mamie</b> — « Lucas ! Le goûter va refroidir ! »</div><div id="stick" class="stick"><div id="nub" class="nub"></div></div><button id="act" class="action">AGIR</button><div id="toast" class="toast"></div></section>
-<section id="battle" class="screen"><div class="battleTop">MINI-BOSS • GÉRARD LE POISSONNIER</div><div class="fighters"><div class="fighter"><div id="ms" class="mamieSprite"></div>Mamie Ginette<div class="bar"><div id="mhp" class="fill" style="width:100%"></div></div></div><div class="fighter"><div id="gs" class="sprite">🧔🏻‍♂️🐟</div>Gérard<div class="bar"><div id="ghp" class="fill" style="width:100%"></div></div></div></div><div id="blog" class="log">« Pas par là, Ginette ! » Gérard garde l'accès à la Grande Rue.</div><div class="moves"><button class="move atk" data-d="10">👜 Coup de sac<small>10 dégâts</small></button><button class="move atk" data-d="14">🔥 Bouillotte<small>14 dégâts</small></button><button class="move atk" data-d="8">🥿 Pantoufle<small>8 dégâts</small></button><button id="guard" class="move">🧶 Cardigan<small>Bloque 1 attaque</small></button></div></section>
-<section id="reward" class="screen"><div class="rewardTitle">VICTOIRE !</div><p>Gérard est K.O.</p><div class="key">🗝️</div><h2>Clé de la Grande Rue</h2><p>+ 80 pièces • Poisson séché</p><p><b>Gérard :</b> « Ginette… Lucas n'est plus vraiment un petit… »</p><p><b>Mamie :</b> « Tu parles trop, Gérard. Il doit avoir faim. »</p><button id="next" class="btn gold continue">CHAPITRE 2 — LA GRANDE RUE</button></section>
-</main><script>
-const $=s=>document.querySelector(s),play=$('#play'),title=$('#title'),battle=$('#battle'),reward=$('#reward'),hero=$('#hero');let x=44,y=75,hp=55,enemy=60,guard=false,talked=false,loot=false,busy=false,coins=+(localStorage.mamieCoins||0),bag=0;$('#coins').textContent=coins;
-function showGame(reset=false){if(reset)localStorage.clear();title.style.display='none';play.style.display='block'}$('#start').onclick=()=>showGame();$('#new').onclick=()=>showGame(true);
-const near=(a,b,r=15)=>Math.hypot(x-a,y-b)<r;function say(n,t){$('#dialog').innerHTML='<b>'+n+'</b> — '+t}function toast(t){let e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),1200)}function move(dx,dy){if(busy)return;x=Math.max(3,Math.min(89,x+dx));y=Math.max(36,Math.min(83,y+dy));hero.style.left=x+'%';hero.style.top=y+'%'}
-$('#act').onclick=()=>{if(near(15,61)){talked=true;$('#obj').textContent='Trouver Gérard';say('Yvette','« Lucas ? Ça fait un moment que je ne l’ai pas vu… Gérard voulait justement te parler. »');toast('✓ Nouvel indice');return}if(near(78,59)){if(!talked){say('Gérard','« Va voir Yvette d’abord, Ginette. »');return}startBattle();return}if(near(49,57)){hp=55;$('#hpH').textContent=hp;say('Mamie','« Mes genoux me remercient. »');toast('❤️ Banc de repos : PV restaurés');return}if(near(76,65)&&!loot){loot=true;coins+=20;bag++;$('#coins').textContent=coins;$('#bag').textContent=bag;localStorage.mamieCoins=coins;say('Mamie','« Une pièce cachée ! Ce chat a du goût. »');toast('+20 pièces • zone secrète');return}say('Mamie','« Lucas ? ... Rien. »')};
-function startBattle(){busy=true;play.style.display='none';battle.style.display='block';$('#blog').textContent='Gérard bloque la Grande Rue. « Pas par là, Ginette ! »'}function anim(e){e.classList.remove('hit');void e.offsetWidth;e.classList.add('hit')}function enemyTurn(){let d=guard?0:8;guard=false;hp=Math.max(0,hp-d);$('#mhp').style.width=(hp/55*100)+'%';$('#hpH').textContent=hp;anim($('#ms'));$('#blog').textContent=d?'Gérard frappe avec un bar ! -8 PV':'Le cardigan encaisse le poisson. 0 dégât !';if(hp<=0)setTimeout(()=>location.reload(),700)}
-document.querySelectorAll('.atk').forEach(b=>b.onclick=()=>{let d=+b.dataset.d;enemy=Math.max(0,enemy-d);$('#ghp').style.width=(enemy/60*100)+'%';anim($('#gs'));$('#blog').textContent=b.childNodes[0].textContent.trim()+' : '+d+' dégâts !';if(!enemy){coins+=80;localStorage.mamieCoins=coins;setTimeout(()=>{battle.style.display='none';reward.style.display='block'},500)}else setTimeout(enemyTurn,400)});$('#guard').onclick=()=>{guard=true;$('#blog').textContent='Mamie ajuste son cardigan.';setTimeout(enemyTurn,400)};$('#next').onclick=()=>{localStorage.mamieChapter=2;reward.innerHTML='<div class="rewardTitle">CHAPITRE 2</div><div class="key">🏘️</div><h1>LA GRANDE RUE</h1><p>Bistrot • Mairie • Parc • nouveaux habitants • nouveaux indices</p><p>La suite arrive sur ce même lien.</p><button class="btn gold continue" onclick="location.reload()">REVENIR AU MENU</button>'};
-let active=false,sx=0,sy=0;$('#stick').addEventListener('pointerdown',e=>{active=true;$('#stick').setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY});$('#stick').addEventListener('pointermove',e=>{if(!active)return;let dx=Math.max(-34,Math.min(34,e.clientX-sx)),dy=Math.max(-34,Math.min(34,e.clientY-sy));$('#nub').style.transform='translate('+dx+'px,'+dy+'px)';if(Math.abs(dx)>8||Math.abs(dy)>8)move(dx/62,dy/62)});$('#stick').addEventListener('pointerup',()=>{active=false;$('#nub').style.transform='none'});
-</script></body></html>
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+<meta name="theme-color" content="#181714">
+<title>Mamie Contre le Monde</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main id="app">
+  <section id="titleScreen" class="screen active">
+    <div class="titleCard">
+      <div class="logo">MAMIE <span>CONTRE</span><br>LE MONDE</div>
+      <p>Une aventure beaucoup trop sérieuse pour retrouver Lucas.</p>
+      <button id="continueBtn" class="primary">CONTINUER</button>
+      <button id="newBtn">NOUVELLE PARTIE</button>
+    </div>
+  </section>
+
+  <section id="gameScreen" class="screen">
+    <div id="world" class="zone market">
+      <div id="zoneLabel" class="zoneLabel">CHAPITRE 1 — LE MARCHÉ</div>
+      <div class="building bakery"><b>BOULANGERIE</b><span>CHEZ YVETTE</span></div>
+      <div class="building fishshop"><b>POISSONNERIE</b><span>GÉRARD</span></div>
+      <div class="building bar"><b>LE PETIT PMU</b><span>FERMÉ</span></div>
+      <div class="road roadA"></div><div class="road roadB"></div>
+      <div class="fountain">⛲</div><div class="bench">▰</div><div class="crate">▦</div>
+      <div id="npcYvette" class="npc"><img src="assets/yvette.svg"><span>Yvette</span></div>
+      <div id="npcGerard" class="npc"><img src="assets/gerard.svg"><span>Gérard</span></div>
+      <div id="npcMarcel" class="npc hidden"><img src="assets/marcel.svg"><span>Marcel</span></div>
+      <div id="hero" class="hero"><img src="assets/mamie.svg"></div>
+    </div>
+
+    <header class="hud">
+      <div class="chip">❤️ <span id="hpHud">55</span>/55</div>
+      <div class="chip">🪙 <span id="coinHud">0</span></div>
+      <div class="chip">🎒 <span id="itemHud">0</span></div>
+    </header>
+
+    <div class="questBox"><b>OBJECTIF</b><span id="objective">Parler à Yvette</span></div>
+    <div id="prompt" class="prompt"></div>
+
+    <div id="dialogue" class="dialogue">
+      <b id="speaker">Mamie</b><span id="line">« Lucas ! Le goûter va refroidir ! »</span>
+    </div>
+
+    <div id="stick" class="stick"><div id="nub" class="nub"></div></div>
+    <button id="actionBtn" class="action">AGIR</button>
+    <button id="bagBtn" class="bagBtn">SAC</button>
+  </section>
+
+  <section id="battleScreen" class="screen battle">
+    <div class="battleHead"><span id="battleName">GÉRARD LE POISSONNIER</span><small id="battleHint">Mini-boss</small></div>
+    <div class="arena">
+      <div class="fighter"><img src="assets/mamie.svg"><b>Mamie Ginette</b><div class="hpbar"><i id="mamieHpBar"></i></div></div>
+      <div class="fighter enemy"><img id="enemySprite" src="assets/gerard.svg"><b id="enemyName">Gérard</b><div class="hpbar"><i id="enemyHpBar"></i></div></div>
+    </div>
+    <div id="battleLog" class="battleLog">« Pas par là, Ginette ! »</div>
+    <div class="moves">
+      <button data-move="bag">👜 Coup de sac<small>10 dégâts</small></button>
+      <button data-move="hot">🔥 Bouillotte<small>14 dégâts</small></button>
+      <button data-move="slipper">🥿 Pantoufle<small>8 dégâts</small></button>
+      <button data-move="guard">🧶 Cardigan<small>bloque 1 attaque</small></button>
+    </div>
+  </section>
+
+  <section id="inventoryScreen" class="screen overlay">
+    <div class="panel">
+      <button id="closeBag" class="close">×</button>
+      <h2>Sac de Mamie</h2>
+      <div id="inventoryList"></div>
+    </div>
+  </section>
+
+  <section id="chapterScreen" class="screen overlay">
+    <div class="panel chapterPanel">
+      <small>NOUVEAU PASSAGE</small>
+      <h1 id="chapterTitle">LA GRANDE RUE</h1>
+      <p id="chapterText">Bistrot, mairie et parc. Quelqu’un a peut-être vu Lucas.</p>
+      <button id="chapterContinue" class="primary">CONTINUER</button>
+    </div>
+  </section>
+</main>
+<script src="game.js"></script>
+</body>
+</html>
